@@ -12,6 +12,9 @@ using AutoMapper;
 using EntityModel.MClass;
 using System.Net.Http;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using ProyectoRankingEmpresas.Jwt;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProyectoRankingEmpresas.Controllers
@@ -28,13 +31,22 @@ namespace ProyectoRankingEmpresas.Controllers
             _mapper = mapper;
         }
         // GET: api/<ValuesController1>
+        [Jwt.Authorize]
         [HttpGet]
         [Route("List")]
+        [PermisoAttribute(Permiso = RolesPermisos.List_User)]
         public async Task<ActionResult<IEnumerable<DtoUser>>> Get()
         {
-           
+            var identity = HttpContext.User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                IEnumerable<Claim> claims = identity.Claims;
+
+
+            }
             IEnumerable<DtoUser> lista = await  _context.User.Select(p => new DtoUser
             {
+                Guid=p.Guid,
                 Name = p.Name,
                 LastName = p.LastName
             }).ToListAsync();

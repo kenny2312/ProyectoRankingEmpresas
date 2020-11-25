@@ -1,14 +1,17 @@
-﻿using System;
+﻿using ProyectoRankingEmpresas;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace EntityModel.MClass
 {
    public class UserSys
     {
+        
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -32,5 +35,15 @@ namespace EntityModel.MClass
 
         public string user { get; set; }
         public string Password { get; set; }
+
+
+        [NotMapped]
+        [JsonIgnore]
+        public List<RefreshToken> RefreshTokens { get; set; }
+      public  UserSys() {
+            RefreshTokens = new List<RefreshToken>() { };
+
+
+        }
     }
 }

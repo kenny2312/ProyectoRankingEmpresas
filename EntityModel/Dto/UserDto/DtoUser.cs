@@ -6,7 +6,7 @@ using System.Text;
 {
    public class DtoUser
     {
-
+        public string Guid { get; set; }
 
         public string Name { get; set; }
 
