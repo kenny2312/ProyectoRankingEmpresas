@@ -37,6 +37,7 @@ namespace ProyectoRankingEmpresas.Controllers
         [PermisoAttribute(Permiso = RolesPermisos.List_User)]
         public async Task<ActionResult<IEnumerable<DtoUser>>> Get()
         {
+            //asuhdkhasjdjhakdhsk
             var identity = HttpContext.User.Identity as ClaimsIdentity;
             if (identity != null)
             {

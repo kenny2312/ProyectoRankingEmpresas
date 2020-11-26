@@ -9,7 +9,9 @@ namespace ProyectoRankingEmpresas.Model
 {
     public class ApplicationDbContext :DbContext
     {
-        
+        public ApplicationDbContext()
+        {
+        }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
