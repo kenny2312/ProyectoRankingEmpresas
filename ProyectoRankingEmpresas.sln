@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoRankingEmpresas", "ProyectoRankingEmpresas\ProyectoRankingEmpresas.csproj", "{B6772E3F-CEBF-4689-9B71-60D7A4D333EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProyectoRankingEmpresas", "ProyectoRankingEmpresas\ProyectoRankingEmpresas.csproj", "{B6772E3F-CEBF-4689-9B71-60D7A4D333EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityModel", "EntityModel\EntityModel.csproj", "{92612811-E862-4907-8AD4-89690C4204D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityModel", "EntityModel\EntityModel.csproj", "{92612811-E862-4907-8AD4-89690C4204D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
