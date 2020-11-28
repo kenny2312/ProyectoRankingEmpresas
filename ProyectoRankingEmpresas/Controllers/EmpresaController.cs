@@ -28,12 +28,12 @@ namespace ProyectoRankingEmpresas.Controllers
         // GET: api/<EmpresaController>
         [HttpGet]
         [Route("Empresa")]
-        public async Task<ActionResult<DtoEmpresa>> Get(string id)
+        public async Task<ActionResult<DtoCargos>> Get(string id)
         {
 
             var company = await _context.Empresa.FindAsync(id);
 
-            var dto = (DtoEmpresa)_mapper.Map<DtoEmpresa>(company);
+            var dto = (DtoCargos)_mapper.Map<DtoCargos>(company);
             if (company == null)
 
             {
@@ -52,12 +52,13 @@ namespace ProyectoRankingEmpresas.Controllers
         // POST api/<EmpresaController>
         [HttpPost]
         [Route("add")]
-        public async Task<ActionResult<HttpResponseMessage>> Post([FromBody] DtoEmpresaCreate value)
+        public async Task<ActionResult<HttpResponseMessage>> Post([FromBody] DtoCargosCreate value)
         {
 
             try
             {
                 var empresamapp = _mapper.Map<Empresa>(value);
+                empresamapp.CreationDate = DateTime.Now;
                 empresamapp.Guid = Guid.NewGuid().ToString();
                 empresamapp.Guid = Guid.NewGuid().ToString();
                 empresamapp.Guid = Guid.NewGuid().ToString();
@@ -78,7 +79,7 @@ namespace ProyectoRankingEmpresas.Controllers
         // PUT api/<EmpresaController>/5
         [HttpPut]
         [Route("update")]
-        public async Task<ActionResult<HttpResponseMessage>> Put([FromBody] DtoEmpresaUpdate value)
+        public async Task<ActionResult<HttpResponseMessage>> Put([FromBody] DtoCargosUpdate value)
         {
 
             try
@@ -110,7 +111,7 @@ namespace ProyectoRankingEmpresas.Controllers
         // DELETE api/<EmpresaController>/5
         [HttpDelete]
         [Route("delete")]
-        public async Task<ActionResult<DtoEmpresa>> Delete(string id)
+        public async Task<ActionResult<DtoCargos>> Delete(string id)
         {
 
             var empresa  = await _context.Empresa.FindAsync(id);
@@ -129,9 +130,9 @@ namespace ProyectoRankingEmpresas.Controllers
         }
 
         [NonAction]
-        private bool PersonExists(string id)
+        private bool EmpresaExists(string id)
         {
-            return _context.User.Any(e => e.Guid == id);
+            return _context.Empresa.Any(e => e.Guid == id);
         }
     }
 }
