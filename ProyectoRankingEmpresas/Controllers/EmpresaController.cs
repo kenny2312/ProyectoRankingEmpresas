@@ -52,7 +52,7 @@ namespace ProyectoRankingEmpresas.Controllers
         // POST api/<EmpresaController>
         [HttpPost]
         [Route("add")]
-        public async Task<ActionResult<HttpResponseMessage>> Post([FromBody] DtoCargosCreate value)
+        public async Task<ActionResult<HttpResponseMessage>> Post([FromBody] DtoEmpresaCreate value)
         {
 
             try
@@ -60,11 +60,7 @@ namespace ProyectoRankingEmpresas.Controllers
                 var empresamapp = _mapper.Map<Empresa>(value);
                 empresamapp.CreationDate = DateTime.Now;
                 empresamapp.Guid = Guid.NewGuid().ToString();
-                empresamapp.Guid = Guid.NewGuid().ToString();
-                empresamapp.Guid = Guid.NewGuid().ToString();
-                empresamapp.Guid = Guid.NewGuid().ToString();
-                empresamapp.Guid = Guid.NewGuid().ToString();
-                _context.Empresa.Add(empresamapp);
+                 _context.Empresa.Add(empresamapp);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
@@ -79,7 +75,7 @@ namespace ProyectoRankingEmpresas.Controllers
         // PUT api/<EmpresaController>/5
         [HttpPut]
         [Route("update")]
-        public async Task<ActionResult<HttpResponseMessage>> Put([FromBody] DtoCargosUpdate value)
+        public async Task<ActionResult<HttpResponseMessage>> Put([FromBody] DtoEmpresaUpdate value)
         {
 
             try
@@ -88,11 +84,12 @@ namespace ProyectoRankingEmpresas.Controllers
                 if (empresaact != null)
                 {
                     var empresamapp = _mapper.Map<Empresa>(value);
+                    empresaact.Code = empresamapp.Code;
                     empresaact.Name = empresamapp.Name;
                     empresaact.Address = empresamapp.Address;
                     empresaact.City = empresamapp.City;
-                    empresaact.Postal_code = empresamapp.Postal_code;
                     empresaact.Phone = empresamapp.Phone;
+                    empresaact.Industry = empresamapp.Industry;
                     await _context.SaveChangesAsync();
                 }
 
@@ -123,7 +120,7 @@ namespace ProyectoRankingEmpresas.Controllers
             _context.Empresa.Remove(empresa);
             await _context.SaveChangesAsync();
 
-            return Ok(empresa.empresa);
+            return Ok(empresa.Name);
 
 
 

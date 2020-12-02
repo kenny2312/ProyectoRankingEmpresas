@@ -10,7 +10,6 @@ namespace EntityModel.MClass
     public class Empresa
     {
         [Required]
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
@@ -33,18 +32,16 @@ namespace EntityModel.MClass
         [StringLength(60)]
         public string City { get; set; }
 
-        [DisplayName("codigo_postal")]
-        [StringLength(10)]
-        public string Postal_code { get; set; }
-
         [DisplayName("telefono")]
         [StringLength(10)]
 
         public string Phone { get; set; }
 
+        public string Industry { get; set; }
+
         public DateTime CreationDate { get; set; }
 
-        public string empresa { get; set; }
+
         
 
     }

@@ -10,23 +10,24 @@ namespace EntityModel.MClass
     public class Cargos
     {
         [Required]
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         [Key]
         public string Guid { get; set; }
 
-        [DisplayName("Codigo")]
         [StringLength(20)]
         public string Code { get; set; }
 
-        [DisplayName("Nombre")]
         [StringLength(55)]
         public string Name { get; set; }
 
         public DateTime CreationDate { get; set; }
+        
 
+        public int EmpresaId{ get; set; }
+        [ForeignKey("EmpresaId")]
+        public virtual Empresa EmpresaR{ get; set; }
         public string cargos { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EntityModel.Dto.EmpresaDto;
 using EntityModel.Dto.UserDto;
 using EntityModel.MClass;
 using System;
@@ -23,6 +24,13 @@ namespace ProyectoRankingEmpresas
             CreateMap<DtoUserUpdate, UserSys>();
             CreateMap<UserSys, DtoUserUpdate>();
             //
+            //Empresa
+            CreateMap<Empresa, DtoEmpresa>();
+            CreateMap<DtoEmpresa, Empresa>();
+            CreateMap<DtoEmpresaCreate, Empresa>();
+            CreateMap<Empresa, DtoEmpresaCreate>();
+            CreateMap<DtoEmpresaUpdate, Empresa>();
+            CreateMap<Empresa, DtoEmpresaUpdate>();
         }
 
     }

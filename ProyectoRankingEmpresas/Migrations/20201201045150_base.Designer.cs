@@ -10,8 +10,8 @@ using ProyectoRankingEmpresas.Model;
 namespace ProyectoRankingEmpresas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201121033112_primeram")]
-    partial class primeram
+    [Migration("20201201045150_base")]
+    partial class @base
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,6 +42,50 @@ namespace ProyectoRankingEmpresas.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("Actions");
+                });
+
+            modelBuilder.Entity("EntityModel.MClass.Empresa", b =>
+                {
+                    b.Property<string>("Guid")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("character varying(55)")
+                        .HasMaxLength(55);
+
+                    b.Property<string>("City")
+                        .HasColumnType("character varying(60)")
+                        .HasMaxLength(60);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("character varying(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Industry")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("character varying(55)")
+                        .HasMaxLength(55);
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("Postal_code")
+                        .HasColumnType("text");
+
+                    b.HasKey("Guid");
+
+                    b.ToTable("Empresa");
                 });
 
             modelBuilder.Entity("EntityModel.MClass.GrupoUser", b =>
