@@ -17,25 +17,22 @@ namespace EntityModel.MClass
         [Key]
         public string Guid { get; set; }
 
-        [DisplayName("Codigo")]
+    
         [StringLength(20)]
         public string Code { get; set; }
 
-        [DisplayName("Nombre")]
+   
         [StringLength(55)]
         public string Name { get; set; }
 
-        [DisplayName("direccion")]
+
         [StringLength(55)]
         public string Address { get; set; }
 
-        [DisplayName("ciudad")]
         [StringLength(60)]
         public string City { get; set; }
 
-        [DisplayName("codigo_postal")]
-        [StringLength(10)]
-        public string Postal_code { get; set; }
+        
 
         [DisplayName("telefono")]
         [StringLength(10)]
@@ -44,7 +41,6 @@ namespace EntityModel.MClass
 
         public DateTime CreationDate { get; set; }
 
-        public string empresa { get; set; }
         
 
     }
