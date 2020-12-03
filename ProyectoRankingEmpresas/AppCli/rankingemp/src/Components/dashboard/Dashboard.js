@@ -122,13 +122,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  useEffect(()=>{
+  /*useEffect(()=>{
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
       props.history.push('/login') 
     } 
 
-  });
+  });*/
   const handleDrawerOpen = () => {
     setOpen(true);
   };
