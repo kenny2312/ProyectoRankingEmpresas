@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using ProyectoRankingEmpresas.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+//asd
 namespace ProyectoRankingEmpresas.Controllers
 {
     [Route("api/[controller]")]
