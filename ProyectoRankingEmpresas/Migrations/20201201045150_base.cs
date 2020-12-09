@@ -4,10 +4,31 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ProyectoRankingEmpresas.Migrations
 {
-    public partial class primeram : Migration
+    public partial class @base : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Empresa",
+                columns: table => new
+                {
+                    Guid = table.Column<string>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Code = table.Column<string>(maxLength: 20, nullable: true),
+                    Name = table.Column<string>(maxLength: 55, nullable: true),
+                    Address = table.Column<string>(maxLength: 55, nullable: true),
+                    City = table.Column<string>(maxLength: 60, nullable: true),
+                    Postal_code = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(maxLength: 10, nullable: true),
+                    Industry = table.Column<string>(nullable: true),
+                    CreationDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Empresa", x => x.Guid);
+                });
+
             migrationBuilder.CreateTable(
                 name: "GrupoUser",
                 columns: table => new
@@ -70,22 +91,16 @@ namespace ProyectoRankingEmpresas.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Actions_GroupId",
-                table: "Actions",
-                column: "GroupId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_GrupuserId",
-                table: "User",
-                column: "GrupuserId",
-                unique: true);
+           
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Actions");
+
+            migrationBuilder.DropTable(
+                name: "Empresa");
 
             migrationBuilder.DropTable(
                 name: "User");

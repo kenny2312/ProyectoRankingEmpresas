@@ -10,7 +10,6 @@ namespace EntityModel.MClass
     public class Empresa
     {
         [Required]
-        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
@@ -39,8 +38,11 @@ namespace EntityModel.MClass
 
         public string Phone { get; set; }
 
+        public string Industry { get; set; }
+
         public DateTime CreationDate { get; set; }
 
+        public string empresa { get; set; }
         
 
     }
