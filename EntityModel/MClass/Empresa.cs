@@ -13,14 +13,15 @@ namespace EntityModel.MClass
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-      
+
+        //id de la empresa 
         public string Guid { get; set; }
 
-    
+
         [StringLength(20)]
         public string Code { get; set; }
 
-   
+
         [StringLength(55)]
         public string Name { get; set; }
 
@@ -31,7 +32,7 @@ namespace EntityModel.MClass
         [StringLength(60)]
         public string City { get; set; }
 
-        
+
 
         [DisplayName("telefono")]
         [StringLength(10)]
@@ -43,7 +44,13 @@ namespace EntityModel.MClass
         public DateTime CreationDate { get; set; }
 
         public string empresa { get; set; }
-        
 
+        public virtual  List<UserSys>  Usuarios {get; set;}
+        public Empresa()
+        {
+            Usuarios = new List<UserSys>() { };
+
+
+        }
     }
 }

@@ -30,8 +30,9 @@ namespace ProyectoRankingEmpresas.Controllers
             var response =   _userService.Authenticate(model, ipAddress());
 
             if (response == null)
-                 return NotFound(new { message = "Username or password is incorrect" });
-               
+                 return NotFound();
+
+            
             return Ok(response);
         }
 

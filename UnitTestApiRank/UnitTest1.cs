@@ -32,6 +32,7 @@ namespace UnitTestApiRank
             //Preparacion
             var nombreBD = Guid.NewGuid().ToString();
             var contexto = ContruirContext(nombreBD);
+                 //  contexto.User.Add(new UserSys() {  });
             var mapper = ContruirAutoMapper();
             IOptions<AppSettings> casteo = Options.Create<AppSettings>(new AppSettings());
                 IUserService userService = new UserService(casteo, contexto);
@@ -44,7 +45,7 @@ namespace UnitTestApiRank
             //NotFoundResult
 
             //verificacion
-            Assert.IsInstanceOfType(respuesta, typeof(OkResult));
+            Assert.IsInstanceOfType(respuesta, typeof(NotFoundResult));
         }
     }
 }

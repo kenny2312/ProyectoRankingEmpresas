@@ -24,10 +24,29 @@ namespace EntityModel.MClass
 
         public DateTime CreationDate { get; set; }
         
+        public int remuneraciones { get; set; }
 
-        public int EmpresaId{ get; set; }
+        public string EmpresaId{ get; set; }
         [ForeignKey("EmpresaId")]
         public virtual Empresa EmpresaR{ get; set; }
-        public string cargos { get; set; }
+
+        //  public virtual Remuneracion rem { get; set; }
+
+        #region atributos de la clase
+        //id
+        //guid
+        //cargo
+        //remuneracion total +sueldo base + bonos +
+        //remuneracion sueldo base
+        //remuneracion alimatacion
+        //remuneracion horas extra
+        //remuneracion bono navideño
+        //remuneracion iies
+        //remuenracion transporte 
+        //remuneracion para los uniformes 
+        //
+        #endregion
+
+
     }
 }

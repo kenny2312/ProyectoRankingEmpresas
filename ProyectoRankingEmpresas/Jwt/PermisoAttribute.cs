@@ -42,11 +42,9 @@ namespace ProyectoRankingEmpresas.Controllers
 
                 if (!FrontUser.TienePermiso(this.Permiso, dto))
                 {
-                    filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new
-                    {
-                        controller = "api",
-                        action = "/"
-                    }));
+                
+                    filterContext.Result = null;
+                ;
                 }
         }
 
