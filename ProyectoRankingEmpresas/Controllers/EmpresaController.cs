@@ -91,7 +91,7 @@ namespace ProyectoRankingEmpresas.Controllers
                     empresaact.Name = empresamapp.Name;
                     empresaact.Address = empresamapp.Address;
                     empresaact.City = empresamapp.City;
-                    empresaact.Postal_code = empresamapp.Postal_code;
+                   
                     empresaact.Phone = empresamapp.Phone;
                     await _context.SaveChangesAsync();
                 }
@@ -123,7 +123,7 @@ namespace ProyectoRankingEmpresas.Controllers
             _context.Empresa.Remove(empresa);
             await _context.SaveChangesAsync();
 
-            return Ok(empresa.empresa);
+            return Ok(empresa.Name);
 
 
 

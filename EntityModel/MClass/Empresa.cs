@@ -14,7 +14,7 @@ namespace EntityModel.MClass
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        [Key]
+      
         public string Guid { get; set; }
 
     

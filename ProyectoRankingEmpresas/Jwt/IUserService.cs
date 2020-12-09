@@ -37,9 +37,9 @@ namespace ProyectoRankingEmpresas
             _context = context;
         }
 
-        public AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
+        public  AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            var user = _context.User.SingleOrDefault(x => x.user == model.Username && x.Password == model.Password);
+            var user =  _context.User.SingleOrDefault(x => x.user == model.Username && x.Password == model.Password);
 
             // return null if user not found
             if (user == null) return null;

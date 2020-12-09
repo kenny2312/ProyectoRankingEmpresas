@@ -25,13 +25,13 @@ namespace ProyectoRankingEmpresas.Controllers
         }
 
         [HttpPost("authenticate")]
-        public IActionResult Authenticate(AuthenticateRequest model)
+        public  async Task<ActionResult> Authenticate(AuthenticateRequest model)
         {
-            var response = _userService.Authenticate(model, ipAddress());
+            var response =   _userService.Authenticate(model, ipAddress());
 
             if (response == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
-
+                 return NotFound(new { message = "Username or password is incorrect" });
+               
             return Ok(response);
         }
 
@@ -107,10 +107,19 @@ namespace ProyectoRankingEmpresas.Controllers
         }
         private string ipAddress()
         {
-            if (Request.Headers.ContainsKey("X-Forwarded-For"))
-                return Request.Headers["X-Forwarded-For"];
-            else
-                return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            try
+            {
+                if (Request.Headers.ContainsKey("X-Forwarded-For"))
+                    return Request.Headers["X-Forwarded-For"];
+                else
+                    return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            }
+            catch (Exception)
+            {
+
+                return "prueba";
+            }
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EntityModel.MClass;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,7 +14,13 @@ using System.Text;
     
         public string LastName { get; set; }
 
+        public DateTime CreationDate { get; set; }
 
+     
+        public virtual GrupoUser grupouser { get; set; }
+
+        public string user { get; set; }
+        public string Password { get; set; }
 
     }
 }

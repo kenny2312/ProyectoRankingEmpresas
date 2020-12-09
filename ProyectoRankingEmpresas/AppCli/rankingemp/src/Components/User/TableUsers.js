@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Table  from '@material-ui/core/Table';
@@ -9,6 +9,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 import TablePagination from '@material-ui/core/TablePagination';
+import UserService from "./services/user.service";
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function UserList() {
-
+   
 
 
   
@@ -48,8 +49,20 @@ export default function UserList() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
+    const [listU, setListU] = React.useState([]);
 
+    const ListUser = async () => {
 
+        var list = await UserService.getListUser()
+        setListU(list)
+
+    }  
+    useEffect(async() => {
+        if (listU.length<=0) { await ListUser();}
+        
+       
+        console.log(listU);
+    });
   const handleChangePage=((event, newPage)=> {
     setPage(newPage);
   })

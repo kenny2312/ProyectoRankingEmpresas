@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using ProyectoRankingEmpresas.Model;
 
 namespace ProyectoRankingEmpresas
@@ -36,7 +37,48 @@ namespace ProyectoRankingEmpresas
             services.AddControllers();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-           
+            //swager 
+            services.AddSwaggerGen(swagger =>
+            {
+                //This is to generate the Default UI of Swagger Documentation  
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Api Empresas",
+                    Description = "ASP.NET Core 3.1 Web API"
+                });
+                // To Enable authorization using Swagger (JWT)  
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 12345abcdef\"",
+                });
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                          new OpenApiSecurityScheme
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            },
+                            new string[] {}
+
+                    }
+                });
+            });
+
+
+            //
+
+
+
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
@@ -60,7 +102,8 @@ namespace ProyectoRankingEmpresas
               });
             services.AddAuthorization();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-           
+            services.AddSwaggerGen();
+            services.AddOptions();
             services.AddScoped<IUserService, UserService>();
         }
 
@@ -78,14 +121,16 @@ namespace ProyectoRankingEmpresas
              .AllowAnyOrigin()
              .AllowAnyMethod()
              .AllowAnyHeader());
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+            });
             app.UseMiddleware<JwtMiddleware>();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("En Linea");
-                });
+                
                 endpoints.MapControllers();
             });
         }
