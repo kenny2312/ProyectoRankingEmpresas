@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EntityModel.MClass
 {
-    public class Empresa
+    public class Company
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -46,7 +46,7 @@ namespace EntityModel.MClass
         public string empresa { get; set; }
 
         public virtual  List<UserSys>  Usuarios {get; set;}
-        public Empresa()
+        public Company()
         {
             Usuarios = new List<UserSys>() { };
 

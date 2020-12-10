@@ -25,12 +25,12 @@ namespace ProyectoRankingEmpresas
             CreateMap<UserSys, DtoUserUpdate>();
             //
             //Empresa
-            CreateMap<Empresa, DtoEmpresa>();
-            CreateMap<DtoEmpresa, Empresa>();
-            CreateMap<DtoEmpresaCreate, Empresa>();
-            CreateMap<Empresa, DtoEmpresaCreate>();
-            CreateMap<DtoEmpresaUpdate, Empresa>();
-            CreateMap<Empresa, DtoEmpresaUpdate>();
+            CreateMap<Company, DtoCompany>();
+            CreateMap<DtoCompany, Company>();
+            CreateMap<DtoCompanyCreate, Company>();
+            CreateMap<Company, DtoCompanyCreate>();
+            CreateMap<DtoCompanyUpdate, Company>();
+            CreateMap<Company, DtoCompanyUpdate>();
         }
 
     }

@@ -18,7 +18,7 @@ namespace ProyectoRankingEmpresas.Model
     }
         public virtual DbSet<UserSys> User { get; set; }
         public virtual DbSet<GrupoUser> GrupoUser { get; set; }
-        public virtual DbSet<Empresa> Empresa { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
         public virtual DbSet<ActionU> Actions { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {

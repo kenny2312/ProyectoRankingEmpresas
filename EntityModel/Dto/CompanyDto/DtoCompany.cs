@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EntityModel.Dto.EmpresaDto
 {
-    public class DtoEmpresa
+    public class DtoCompany
     {
         public string Guid { get; set; }
 

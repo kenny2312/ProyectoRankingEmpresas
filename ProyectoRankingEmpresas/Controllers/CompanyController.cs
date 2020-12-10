@@ -16,22 +16,22 @@ namespace ProyectoRankingEmpresas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class CompanyController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public EmpresaController(ApplicationDbContext context, IMapper mapper)
+        public CompanyController(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
         // GET: api/<EmpresaController>
         [HttpGet]
-        [Route("Empresa")]
+        [Route("Company")]
         public async Task<ActionResult<DtoCargos>> Get(string id)
         {
 
-            var company = await _context.Empresa.FindAsync(id);
+            var company = await _context.Company.FindAsync(id);
 
             var dto = (DtoCargos)_mapper.Map<DtoCargos>(company);
             if (company == null)
@@ -42,7 +42,7 @@ namespace ProyectoRankingEmpresas.Controllers
 
             return Ok(dto);
         }
-        // GET api/<EmpresaController>/5
+        // GET api/<CompanyController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -52,15 +52,15 @@ namespace ProyectoRankingEmpresas.Controllers
         // POST api/<EmpresaController>
         [HttpPost]
         [Route("add")]
-        public async Task<ActionResult<HttpResponseMessage>> Post([FromBody] DtoEmpresaCreate value)
+        public async Task<ActionResult<HttpResponseMessage>> Post([FromBody] DtoCompanyCreate value)
         {
 
             try
             {
-                var empresamapp = _mapper.Map<Empresa>(value);
-                empresamapp.CreationDate = DateTime.Now;
-                empresamapp.Guid = Guid.NewGuid().ToString();
-                 _context.Empresa.Add(empresamapp);
+                var companymapp = _mapper.Map<Company>(value);
+                companymapp.CreationDate = DateTime.Now;
+                companymapp.Guid = Guid.NewGuid().ToString();
+                 _context.Company.Add(companymapp);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
@@ -72,24 +72,24 @@ namespace ProyectoRankingEmpresas.Controllers
 
         }
 
-        // PUT api/<EmpresaController>/5
+        // PUT api/<CompanyController>/5
         [HttpPut]
         [Route("update")]
-        public async Task<ActionResult<HttpResponseMessage>> Put([FromBody] DtoEmpresaUpdate value)
+        public async Task<ActionResult<HttpResponseMessage>> Put([FromBody] DtoCompanyUpdate value)
         {
 
             try
             {
-                var empresaact = await _context.Empresa.FindAsync(value.Guid);
-                if (empresaact != null)
+                var companyact = await _context.Company.FindAsync(value.Guid);
+                if (companyact != null)
                 {
-                    var empresamapp = _mapper.Map<Empresa>(value);
-                    empresaact.Code = empresamapp.Code;
-                    empresaact.Name = empresamapp.Name;
-                    empresaact.Address = empresamapp.Address;
-                    empresaact.City = empresamapp.City;
-                    empresaact.Phone = empresamapp.Phone;
-                    empresaact.Industry = empresamapp.Industry;
+                    var companymapp = _mapper.Map<Company>(value);
+                    companyact.Code = companymapp.Code;
+                    companyact.Name = companymapp.Name;
+                    companyact.Address = companymapp.Address;
+                    companyact.City = companymapp.City;
+                    companyact.Phone = companymapp.Phone;
+                    companyact.Industry = companymapp.Industry;
                     await _context.SaveChangesAsync();
                 }
 
@@ -105,31 +105,31 @@ namespace ProyectoRankingEmpresas.Controllers
 
 
         }
-        // DELETE api/<EmpresaController>/5
+        // DELETE api/<CompanyController>/5
         [HttpDelete]
         [Route("delete")]
         public async Task<ActionResult<DtoCargos>> Delete(string id)
         {
 
-            var empresa  = await _context.Empresa.FindAsync(id);
-            if (empresa == null)
+            var company  = await _context.Company.FindAsync(id);
+            if (company == null)
             {
                 return NotFound();
             }
 
-            _context.Empresa.Remove(empresa);
+            _context.Company.Remove(company);
             await _context.SaveChangesAsync();
 
-            return Ok(empresa.Name);
+            return Ok(company.Name);
 
 
 
         }
 
         [NonAction]
-        private bool EmpresaExists(string id)
+        private bool CompanyExists(string id)
         {
-            return _context.Empresa.Any(e => e.Guid == id);
+            return _context.Company.Any(e => e.Guid == id);
         }
     }
 }

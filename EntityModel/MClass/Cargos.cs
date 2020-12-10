@@ -28,7 +28,7 @@ namespace EntityModel.MClass
 
         public string EmpresaId{ get; set; }
         [ForeignKey("EmpresaId")]
-        public virtual Empresa EmpresaR{ get; set; }
+        public virtual Company EmpresaR{ get; set; }
 
         //  public virtual Remuneracion rem { get; set; }
 
